@@ -1,16 +1,25 @@
+import json
+
 from abstract_hh import Abstr_HH
 import requests
+
+from confing import DATA
 
 
 class Request_HH(Abstr_HH):
     def __init__(self):
-        pass
+        self.url_get = "https://api.hh.ru/vacancies"  # используемый адрес для отправки запроса
+        self.all_vacancy = self.get_url()
+
     def get_url(self):
-        url_get = "https://api.hh.ru/vacancies"  # используемый адрес для отправки запроса
+        response = requests.get(self.url_get)  # отправка GET-запроса
+        return response.json()
 
-        response = requests.get(url_get)  # отправка GET-запроса
+    def write_json(self):
+        with open(DATA, 'w', encoding='utf-8') as file:
+            file.write(json.dumps(self.all_vacancy, ensure_ascii=False))
+            return self.all_vacancy
 
-        print(response)  # вывод объекта класса Response
-        # Вывод:
-        # >> <Response [200]>
-        print(response.json())
+
+cla = Request_HH()
+print(cla.write_json())
