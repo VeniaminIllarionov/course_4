@@ -14,4 +14,11 @@ class Vacansy(Request_HH):
         self.city = city
         self.to_salary = to_salary
 
+    def read_json(self):
+        with open("filename", "r", encoding= 'utf-8') as file:
+            return
+
+    def vacansy(self):
+        pass
+
 
