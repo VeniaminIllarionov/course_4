@@ -1,24 +1,28 @@
+import json
+
 from requests_hh import Request_HH
 
 
 class Vacansy(Request_HH):
-    def __init__(self, name: str, from_salary: float, to_salary: float, city: str):
+    def __init__(self, name: str, salary: int, city: str):
         """Инициализируем с атрибутами:
         name: str - Наименование профессии,
-        from_salary - Начальная зарплата,
-        to_salary - До Зарплата,
-        city - Страна"""
-        super().__init__()
-        self.name = name
-        self.from_salary = from_salary
+        salary - Зарплата,
+        city - Город"""
+        super().__init__(name)
+        self.salary = salary
         self.city = city
-        self.to_salary = to_salary
-
-    def read_json(self):
-        with open("filename", "r", encoding= 'utf-8') as file:
-            return
+        self.search_vacansy = []
 
     def vacansy(self):
-        pass
+        for vacansy in self.all_vacansy:
+            if vacansy["salary"] is not None and vacansy["salary"]["from"] is not None:
+                if vacansy['area']['name'] == self.city:
+                    if vacansy['salary']['from'] >= self.salary and vacansy['salary']['from'] is not None:
+                        self.search_vacansy.append(vacansy)
+        return self.search_vacansy
 
 
+ddd = Vacansy('Разработчик', 80_000, "Москва")
+
+print(ddd.vacansy())
