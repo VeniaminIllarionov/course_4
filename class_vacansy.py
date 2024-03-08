@@ -12,17 +12,27 @@ class Vacansy(Request_HH):
         super().__init__(name)
         self.salary = salary
         self.city = city
-        self.search_vacansy = []
+        self.found_vacansy = []  # Наденные вакансии
+        self.top_salary = 0  # Наибольшая зарплата
 
     def vacansy(self):
         for vacansy in self.all_vacansy:
             if vacansy["salary"] is not None and vacansy["salary"]["from"] is not None:
                 if vacansy['area']['name'] == self.city:
                     if vacansy['salary']['from'] >= self.salary and vacansy['salary']['from'] is not None:
-                        self.search_vacansy.append(vacansy)
-        return self.search_vacansy
+                        self.found_vacansy.append(vacansy)
+        return self.found_vacansy
+
+    def top_vacansy(self):
+        """Переборка зарплаты и выбор наибольшей зарблаты"""
+        for i in self.found_vacansy:
+            if i['salary']['from'] > self.top_salary:
+                self.top_salary = i['salary']['from']
+        print(self.top_salary)
 
 
-ddd = Vacansy('Разработчик', 80_000, "Москва")
+ddd = Vacansy('хор', 80_000, "Москва")
 
 print(ddd.vacansy())
+print(ddd.save_info())
+ddd.top_vacansy()
