@@ -28,7 +28,7 @@ class Vacansy(Request_HH):
         for i in self.found_vacansy:
             if i['salary']['from'] > self.top_salary:
                 self.top_salary = i['salary']['from']
-        print(self.top_salary)
+        return self.top_salary
 
     def __str__(self):
         """Вывод подобранных вакансий"""
@@ -43,7 +43,7 @@ class Vacansy(Request_HH):
                             f"Город: {i['area']['name']}, "
                             f"Ссылка на вакансию: {i['alternate_url']}")
                 count += 1
-            print(f'Найдены вакансии в колличестве {count}:')
+            print(f'Найдены вакансии в колличестве {count}, с максимальной зарплатой: {self.top_vacansy()}:')
             for v in vacs:
                 print(v)
         else:
