@@ -7,9 +7,10 @@ def main():
         user_salary = int(input("Введите пожалуйста, зарплату которую хотели бы получать"))
         if type(user_salary) is int:
             break
+
     while True:
         user_city = input("Введите пожалуйста, город где хотели бы найти работу").title()
-        if user_city.isalpha():
+        if type(user_city) is str:
             break
     user = Vacansy(name=user_name, salary=user_salary, city=user_city)
     user.vacansy()
