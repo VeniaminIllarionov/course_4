@@ -1,11 +1,11 @@
 import json
 
-from typing import Any, Dict
+from typing import Any
 
-from abstract_hh import Abstr_HH
+from src.abstract_hh import Abstr_HH
 import requests
 
-from confing import DATA
+from src.confing import DATA
 
 
 class Request_HH(Abstr_HH):

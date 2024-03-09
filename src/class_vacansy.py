@@ -31,23 +31,26 @@ class Vacansy(Request_HH):
         print(self.top_salary)
 
     def __str__(self):
+        """Вывод подобранных вакансий"""
         vacs = []
-        count = 1
-        for i in self.found_vacansy:
-            if i['salary']['to'] is None:
-                i['salary']['to'] = 0
-            vacs.append(f"{count}.{i['name']}, Зарплата от: {i['salary']['from']}, "
-                    f"Зарплата до: {i['salary']['to']}, "
-                    f"Город: {i['area']['name']}, "
-                    f"Ссылка на вакансию: {i['alternate_url']}")
-            count += 1
-        print(f'Найдены вакансии в колличестве {count}:')
-        for v in vacs:
-            print(v)
+        count = 0
+        if len(self.all_vacansy) >= 1:
+            for i in self.found_vacansy:
+                if i['salary']['to'] is None:
+                    i['salary']['to'] = 0
+                vacs.append(f"{count}.{i['name']}, Зарплата от: {i['salary']['from']}, "
+                            f"Зарплата до: {i['salary']['to']}, "
+                            f"Город: {i['area']['name']}, "
+                            f"Ссылка на вакансию: {i['alternate_url']}")
+                count += 1
+            print(f'Найдены вакансии в колличестве {count}:')
+            for v in vacs:
+                print(v)
+        else:
+            self.message = "Вакансии не найдены"
+            print(self.message)
 
 
+dd = Vacansy('fgge', 80_000, "Москва")
 
-
-dd = Vacansy('директор', 80_000, "Москва")
-print(dd.vacansy())
 dd.__str__()
