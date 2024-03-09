@@ -30,9 +30,24 @@ class Vacansy(Request_HH):
                 self.top_salary = i['salary']['from']
         print(self.top_salary)
 
+    def __str__(self):
+        vacs = []
+        count = 1
+        for i in self.found_vacansy:
+            if i['salary']['to'] is None:
+                i['salary']['to'] = 0
+            vacs.append(f"{count}.{i['name']}, Зарплата от: {i['salary']['from']}, "
+                    f"Зарплата до: {i['salary']['to']}, "
+                    f"Город: {i['area']['name']}, "
+                    f"Ссылка на вакансию: {i['alternate_url']}")
+            count += 1
+        print(f'Найдены вакансии в колличестве {count}:')
+        for v in vacs:
+            print(v)
 
-ddd = Vacansy('хор', 80_000, "Москва")
 
-print(ddd.vacansy())
-print(ddd.save_info())
-ddd.top_vacansy()
+
+
+dd = Vacansy('директор', 80_000, "Москва")
+print(dd.vacansy())
+dd.__str__()
