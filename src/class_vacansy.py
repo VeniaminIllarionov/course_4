@@ -1,6 +1,6 @@
 import json
 
-from requests_hh import Request_HH
+from src.requests_hh import Request_HH
 
 
 class Vacansy(Request_HH):
@@ -33,7 +33,7 @@ class Vacansy(Request_HH):
     def __str__(self):
         """Вывод подобранных вакансий"""
         vacs = []
-        count = 0
+        count = 1
         if len(self.all_vacansy) >= 1:
             for i in self.found_vacansy:
                 if i['salary']['to'] is None:
@@ -51,6 +51,4 @@ class Vacansy(Request_HH):
             print(self.message)
 
 
-dd = Vacansy('fgge', 80_000, "Москва")
 
-dd.__str__()
