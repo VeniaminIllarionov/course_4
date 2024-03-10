@@ -22,9 +22,6 @@ class Request_HH(Abstr_HH):
             keys_response = {'text': f'NAME:{self.name}', 'area': 113, 'per_page': 100, }
             info = requests.get(f'https://api.hh.ru/vacancies', keys_response)
             return json.loads(info.text)['items']
-        else:
-            self.message = "Вакансии не найдены"
-            return self.message
 
     def save_info(self) -> str or list:
         """Created json file with info about vacancies"""
@@ -39,6 +36,9 @@ class Request_HH(Abstr_HH):
 
     def __repr__(self):
         return self.all_vacansy
+
+    def __len__(self):
+        return len(self.all_vacansy)
 
 
 
