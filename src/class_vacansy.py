@@ -35,9 +35,11 @@ class Vacansy(Request_HH):
         for i in self.found_vacansy:
             if i['salary']['to'] is None:
                 i['salary']['to'] = 0
-            vacs.append(f"{self.count + 1}.{i['name']}, Зарплата от: {i['salary']['from']}, "
-                        f"Зарплата до: {i['salary']['to']}, "
-                        f"Город: {i['area']['name']}, "
+            vacs.append(f"{self.count + 1}.{i['name']}, Зарплата от: {i['salary']['from']},"
+                        f"Зарплата до: {i['salary']['to']},"
+                        f"Требование: {i['snippet']['requirement']},"
+                        f"Требуется: {i['snippet']['responsibility']}"
+                        f"Город: {i['area']['name']}"
                         f"Ссылка на вакансию: {i['alternate_url']}")
             self.count += 1
             for v in vacs:
@@ -55,6 +57,3 @@ class Vacansy(Request_HH):
         else:
             self.message = "Вакансии не найдены"
             return self.message
-
-
-
