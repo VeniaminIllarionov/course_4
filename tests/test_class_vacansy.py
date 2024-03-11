@@ -28,9 +28,9 @@ def test_init(vacansy):
                                                'url': 'https://api.hh.ru/employers/195848',
                                                'alternate_url': 'https://hh.ru/employer/195848',
                                                'logo_urls':
-                                                   {'original': 'https://hhcdn.ru/employer-logo-original/193024.png',
-                                                    '240': 'https://hhcdn.ru/employer-logo/1081713.png',
-                                                    '90': 'https://hhcdn.ru/employer-logo/1081712.png'},
+                                                   {'original': 'https://img.hhcdn.ru/employer-logo-original/193024.png',
+                                                    '240': 'https://img.hhcdn.ru/employer-logo/1081713.png',
+                                                    '90': 'https://img.hhcdn.ru/employer-logo/1081712.png'},
                                                'vacancies_url': 'https://api.hh.ru/vacancies?employer_id=195848',
                                                'accredited_it_employer': False, 'trusted': True},
                                   'snippet': {'requirement': 'Образование выше среднего. '
@@ -51,11 +51,12 @@ def test_init(vacansy):
                                   'employment': {'id': 'full', 'name': 'Полная занятость'},
                                   'adv_response_url': None, 'is_adv_vacancy': False, 'adv_context': None}]
 
-    assert vacansy.__str__() == ('1.Ведущий программист 1С (Москва), Зарплата от: 460000, Зарплата до: 517000, '
-                                 'Требование: Образование выше среднего. Наличие сертификатов 1С: Специалист по '
-                                 'платформе – приветствуется. Знание 1С:ERP (производство и ремонты) - '
-                                 'приветствуется. , Требуется: Доработка конфигурации под требования организации. '
-                                 'Выяснение причин поведения программы. Поиск и исправление ошибок. Оптимизация '
-                                 'кода/запросов. Подготовка к обновлению релизов., Город: Москва, Ссылка на вакансию: '
-                                 'https://hh.ru/vacancy/94212812')
-    assert vacansy.top_vacansy() == 'Найдены вакансии в колличестве 1, с максимальной зарплатой: 460000:'
+    assert vacansy.construction() == ['1.Ведущий программист 1С (Москва), Зарплата от: 460000, Зарплата до: 517000, '
+                                      'Требование: Образование выше среднего. Наличие сертификатов 1С: '
+                                      'Специалист по платформе – приветствуется. '
+                                      'Знание 1С:ERP (производство и ремонты) - приветствуется. , '
+                                      'Требуется: Доработка конфигурации под требования организации. '
+                                      'Выяснение причин поведения программы. Поиск и исправление ошибок. '
+                                      'Оптимизация кода/запросов. Подготовка к обновлению релизов., '
+                                      'Город: Москва, Ссылка на вакансию: https://hh.ru/vacancy/94212812']
+    assert vacansy.top_vacansy() == 460000

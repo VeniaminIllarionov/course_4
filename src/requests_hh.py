@@ -12,7 +12,6 @@ class Request_HH(Abstr_HH):
     def __init__(self, name: str):
         self.name = name
         self.message = 'Вакансии найдены'
-        self.url_get = "https://api.hh.ru/vacancies"  # используемый адрес для отправки запроса
         self.all_vacansy = self.get_url()
 
     def get_url(self) -> str | Any:
@@ -26,7 +25,7 @@ class Request_HH(Abstr_HH):
     def save_info(self) -> str or list:
         """Создание json файла с найдеными вакансиями"""
 
-        if len(self.all_vacansy) == 0:
+        if self.__len__() == 0:
             self.message = "Вакансии не найдены"
             return self.message
         else:
