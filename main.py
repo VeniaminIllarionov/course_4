@@ -19,9 +19,9 @@ def main():
         print("Попробуйте еще!")
     user = Vacansy(name=user_name, salary=user_salary, city=user_city)
     user.vacansy()
+    user.construction()
+    user.top_vacansy()
     user.__str__()
-    print(user.top_vacansy())
-    print(user.__str__())
 
 
 if __name__ == '__main__':

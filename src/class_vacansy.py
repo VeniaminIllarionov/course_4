@@ -11,6 +11,8 @@ class Vacansy(Request_HH):
         salary - Зарплата,
         city - Город"""
         super().__init__(name)
+        self.constr_vacansy = []
+        self.count = 0
         self.salary = salary
         self.city = city
         self.found_vacansy = []  # Наденные вакансии
@@ -28,32 +30,32 @@ class Vacansy(Request_HH):
             self.message = "Вакансии не найдены"
             return self.message
 
-    def __str__(self):
-        """Вывод подобранных вакансий"""
-        vacs = []
-        self.count = 0
+    def construction(self):
         for i in self.found_vacansy:
             if i['salary']['to'] is None:
                 i['salary']['to'] = 0
-            vacs.append(f"{self.count + 1}.{i['name']}, Зарплата от: {i['salary']['from']}, "
-                        f"Зарплата до: {i['salary']['to']}, "
-                        f"Требование: {i['snippet']['requirement']}, "
-                        f"Требуется: {i['snippet']['responsibility']}, "
-                        f"Город: {i['area']['name']}, "
-                        f"Ссылка на вакансию: {i['alternate_url']}")
+            self.constr_vacansy.append(f"{self.count + 1}.{i['name']}, Зарплата от: {i['salary']['from']}, "
+                                       f"Зарплата до: {i['salary']['to']}, "
+                                       f"Требование: {i['snippet']['requirement']}, "
+                                       f"Требуется: {i['snippet']['responsibility']}, "
+                                       f"Город: {i['area']['name']}, "
+                                       f"Ссылка на вакансию: {i['alternate_url']}")
             self.count += 1
-            for v in vacs:
-                return v
+        return self.constr_vacansy
+
+    def __str__(self):
+        """Вывод подобранных вакансий"""
+        if self.count > 0:
+            print(f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой {self.top_salary} :')
+            for v in self.constr_vacansy:
+                print(v)
         else:
-            return 'Попробуйте еще раз.'
+            self.message = "Вакансии не найдены."
+            print(self.message)
 
     def top_vacansy(self):
         """Переборка зарплаты и выбор наибольшей зарблаты"""
-        if self.__len__() > 1:
-            for i in self.found_vacansy:
-                if i['salary']['from'] > self.top_salary:
-                    self.top_salary = i['salary']['from']
-            return f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой {self.top_salary} :'
-        else:
-            self.message = "Вакансии не найдены."
-            return self.message
+        for i in self.found_vacansy:
+            if i['salary']['from'] > self.top_salary:
+                self.top_salary = i['salary']['from']
+        return self.top_salary
