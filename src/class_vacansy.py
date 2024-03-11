@@ -11,8 +11,8 @@ class Vacansy(Request_HH):
         salary - Зарплата,
         city - Город"""
         super().__init__(name)
-        self.constr_vacansy = []
-        self.count = 0
+        self.constr_vacansy = []  # Пустой лист для сортировки вакансий по 'городу' и 'желаемой зарплаты'
+        self.count = 0  # Счетчик количества найденных вакансий
         self.salary = salary
         self.city = city
         self.found_vacansy = []  # Наденные вакансии
@@ -31,6 +31,7 @@ class Vacansy(Request_HH):
             return self.message
 
     def construction(self):
+        """Функция для формирования полученной информации"""
         for i in self.found_vacansy:
             if i['salary']['to'] is None:
                 i['salary']['to'] = 0
