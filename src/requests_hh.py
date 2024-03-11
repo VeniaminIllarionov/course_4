@@ -24,7 +24,7 @@ class Request_HH(Abstr_HH):
             return json.loads(info.text)['items']
 
     def save_info(self) -> str or list:
-        """Created json file with info about vacancies"""
+        """Создание json файла с найдеными вакансиями"""
 
         if len(self.all_vacansy) == 0:
             self.message = "Вакансии не найдены"
