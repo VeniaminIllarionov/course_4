@@ -49,11 +49,11 @@ class Vacansy(Request_HH):
 
     def top_vacansy(self):
         """Переборка зарплаты и выбор наибольшей зарблаты"""
-        if self.__len__() > 0:
+        if self.__len__() > 1:
             for i in self.found_vacansy:
                 if i['salary']['from'] > self.top_salary:
                     self.top_salary = i['salary']['from']
-            return f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой: {self.top_salary}:'
+            return f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой {self.top_salary} :'
         else:
-            self.message = "Вакансии не найдены"
+            self.message = "Вакансии не найдены."
             return self.message
