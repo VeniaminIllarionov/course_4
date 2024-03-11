@@ -11,8 +11,8 @@ class Vacansy(Request_HH):
         salary - Зарплата,
         city - Город"""
         super().__init__(name)
-        self.constr_vacansy = []
-        self.count = 0
+        self.constr_vacansy = []  # Пустой лист для сортировки вакансий по 'городу' и 'желаемой зарплаты'
+        self.count = 0  # Счетчик количества найденных вакансий
         self.salary = salary
         self.city = city
         self.found_vacansy = []  # Наденные вакансии
@@ -31,24 +31,25 @@ class Vacansy(Request_HH):
             return self.message
 
     def construction(self):
+        """Функция для формирования полученной информации"""
         for i in self.found_vacansy:
             if i['salary']['to'] is None:
                 i['salary']['to'] = 0
-            self.constr_vacansy.append(f"{self.count + 1}.{i['name']}, Зарплата от: {i['salary']['from']}, "
-                                       f"Зарплата до: {i['salary']['to']}, "
-                                       f"Требование: {i['snippet']['requirement']}, "
-                                       f"Требуется: {i['snippet']['responsibility']}, "
-                                       f"Город: {i['area']['name']}, "
-                                       f"Ссылка на вакансию: {i['alternate_url']}")
+            self.constr_vacansy.append(f"{self.count + 1}.{i['name']}, \nЗарплата от: {i['salary']['from']}, "
+                                       f"\nЗарплата до: {i['salary']['to']}, "
+                                       f"\nТребование: {i['snippet']['requirement']}, "
+                                       f"\nТребуется: {i['snippet']['responsibility']}, "
+                                       f"\nГород: {i['area']['name']}, "
+                                       f"\nСсылка на вакансию: {i['alternate_url']}")
             self.count += 1
         return self.constr_vacansy
 
     def __str__(self):
         """Вывод подобранных вакансий"""
         if self.count > 0:
-            print(f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой {self.top_salary} :')
+            print(f'Найдены вакансии в колличестве {self.count}, с максимальной зарплатой {self.top_salary} :\n')
             for v in self.constr_vacansy:
-                print(v)
+                print(f'{v}\n')
         else:
             self.message = "Вакансии не найдены."
             print(self.message)
