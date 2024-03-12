@@ -25,7 +25,7 @@ class Request_HH(Abstr_HH):
         """Создание json файла с найдеными вакансиями"""
 
         if self.status != 200:
-            return f"Что-то пошло не так, попробуйте заново.\n Код ошибки: {self.status}"
+            print(f"Что-то пошло не так, попробуйте заново.\n Код ошибки: {self.status}")
         elif self.__len__() == 0:
             return f"Вакансии не найдены"
         else:
