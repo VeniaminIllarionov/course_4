@@ -1,6 +1,6 @@
 import json
 from src.confing import DATA
-from src.requests_hh import Request_HH
+
 
 
 class Vacansy:
