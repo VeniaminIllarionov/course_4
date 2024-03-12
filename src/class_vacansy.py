@@ -2,7 +2,6 @@ import json
 from src.confing import DATA
 
 
-
 class Vacansy:
 
     def __init__(self, salary: int, city: str):
