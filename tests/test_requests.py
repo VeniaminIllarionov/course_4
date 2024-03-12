@@ -27,9 +27,9 @@ def test_init(requests):
                                      'employer': {'id': '3128277', 'name': 'Прокуратура Республики Крым',
                                                   'url': 'https://api.hh.ru/employers/3128277',
                                                   'alternate_url': 'https://hh.ru/employer/3128277',
-                                                  'logo_urls': {'240': 'https://img.hhcdn.ru/employer-logo/3430910.png',
-                                                                '90': 'https://img.hhcdn.ru/employer-logo/3430909.png',
-                                                                'original': 'https://img.hhcdn.ru/employer-logo-'
+                                                  'logo_urls': {'240': 'https://hhcdn.ru/employer-logo/3430910.png',
+                                                                '90': 'https://hhcdn.ru/employer-logo/3430909.png',
+                                                                'original': 'https://hhcdn.ru/employer-logo-'
                                                                             'original/747487.png'},
                                                   'vacancies_url': 'https://api.hh.ru/vacancies?employer_id=3128277',
                                                   'accredited_it_employer': False, 'trusted': True},

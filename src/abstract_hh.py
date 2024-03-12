@@ -9,3 +9,6 @@ class Abstr_HH(ABC):
     @abstractmethod
     def get_url(self):
         pass
+    @abstractmethod
+    def save_info(self) -> str or list:
+        pass

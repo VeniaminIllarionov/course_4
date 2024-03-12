@@ -1,4 +1,5 @@
 from src.class_vacansy import Vacansy
+from src.requests_hh import Request_HH
 
 
 def main():
@@ -12,12 +13,15 @@ def main():
         print("Попробуйте еще!")
 
     while True:
-        print(("Введите пожалуйста, город где хотели бы найти работу"))
+        print("Введите пожалуйста, город где хотели бы найти работу")
         user_city = input().title()
         if type(user_city) is str:
             break
         print("Попробуйте еще!")
-    user = Vacansy(name=user_name, salary=user_salary, city=user_city)
+    get_user_api = Request_HH(name=user_name)
+    user = Vacansy(salary=user_salary, city=user_city)
+    get_user_api.save_info()
+    user.read_vacansy()
     user.vacansy()
     user.construction()
     user.top_vacansy()
