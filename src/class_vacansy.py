@@ -1,34 +1,36 @@
 import json
-
+from src.confing import DATA
 from src.requests_hh import Request_HH
 
 
-class Vacansy(Request_HH):
+class Vacansy:
 
-    def __init__(self, name: str, salary: int, city: str):
+    def __init__(self, salary: int, city: str):
         """Инициализируем с атрибутами:
-        name: str - Наименование профессии,
         salary - Зарплата,
         city - Город"""
-        super().__init__(name)
         self.constr_vacansy = []  # Пустой лист для сортировки вакансий по 'городу' и 'желаемой зарплаты'
         self.count = 0  # Счетчик количества найденных вакансий
         self.salary = salary
         self.city = city
         self.found_vacansy = []  # Наденные вакансии
         self.top_salary = 0  # Наибольшая зарплата
+        self.message = 'Вакансии найдены'
+        self.rd_vacansy = None
+
+    def read_vacansy(self):
+        """Чтение файла с поиском вакансий"""
+        with open(DATA, encoding='utf-8') as f:
+            self.rd_vacansy = (json.load(f))
+            return self.rd_vacansy
 
     def vacansy(self):
-        if len(self.all_vacansy) >= 1:
-            for vacansy in self.all_vacansy:
-                if vacansy["salary"] is not None and vacansy["salary"]["from"] is not None:
-                    if vacansy['area']['name'] == self.city:
-                        if vacansy['salary']['from'] >= self.salary and vacansy['salary']['from'] is not None:
-                            self.found_vacansy.append(vacansy)
-            return self.found_vacansy
-        else:
-            self.message = "Вакансии не найдены"
-            return self.message
+        for vacansy_d in self.rd_vacansy:
+            if vacansy_d["salary"] is not None and vacansy_d["salary"]["from"] is not None:
+                if vacansy_d['area']['name'] == self.city:
+                    if vacansy_d['salary']['from'] >= self.salary:
+                        self.found_vacansy.append(vacansy_d)
+        return self.found_vacansy
 
     def construction(self):
         """Функция для формирования полученной информации"""
@@ -60,3 +62,6 @@ class Vacansy(Request_HH):
             if i['salary']['from'] > self.top_salary:
                 self.top_salary = i['salary']['from']
         return self.top_salary
+
+
+

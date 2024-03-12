@@ -9,6 +9,7 @@ from src.confing import DATA
 
 
 class Request_HH(Abstr_HH):
+
     def __init__(self, name: str):
         self.name = name
         self.message = 'Вакансии найдены'
