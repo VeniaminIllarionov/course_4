@@ -11,7 +11,7 @@ def requests():
 
 def test_init(requests):
     assert requests.name == 'Прокурор'
-    assert requests.message == 'Вакансии найдены'
+    assert requests.message_status == 'Запрос успешно выполнен'
     assert requests.save_info() == [{'id': '93513808', 'premium': False, 'name': 'Помощник прокурора (кадровый резерв)',
                                      'department': None, 'has_test': False, 'response_letter_required': False,
                                      'area': {'id': '131', 'name': 'Симферополь', 'url': 'https://api.hh.ru/areas/131'},
@@ -50,4 +50,5 @@ def test_init(requests):
                                      'employment': {'id': 'full', 'name': 'Полная занятость'},
                                      'adv_response_url': None, 'is_adv_vacancy': False, 'adv_context': None}]
     assert requests.__len__() == 1
+    print(requests.save_info())
 
