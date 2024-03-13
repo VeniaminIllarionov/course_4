@@ -18,10 +18,11 @@ def main():
         if type(user_city) is str:
             break
         print("Попробуйте еще!")
-    get_user_api = Request_HH(name=user_name)
     user = Vacansy(salary=user_salary, city=user_city)
-    get_user_api.save_info()
-    user.read_vacansy()
+    get_api = Request_HH(name=user_name)
+    get_api.get_url()
+    get_api.status_api()
+    get_api.save_info()
     user.vacansy()
     user.construction()
     user.top_vacansy()
