@@ -18,7 +18,6 @@ class Vacansy:
         self.message = 'Вакансии найдены'
 
     def vacansy(self):
-
         for vacansy_d in self.rd_vacansy:
             if vacansy_d["salary"] is not None and vacansy_d["salary"]["from"] is not None:
                 if vacansy_d['area']['name'] == self.city:
