@@ -20,10 +20,12 @@ class Request_HH(Abstr_HH):
             info = requests.get(f'https://api.hh.ru/vacancies', keys_response)
             return json.loads(info.text)['items']
 
-    def save_info(self):
-        status_code = self.status_api()
-        if status_code != 200:
-            print(f"Что-то пошло не так, попробуйте заново.\n Код ошибки: {status_code}")
+    def save_info(self) -> str or list:
+        """Создание json файла с найдеными вакансиями"""
+
+        if self.status != 200:
+            print(f"Что-то пошло не так, попробуйте заново.\n Код ошибки: {self.status}")
+
         elif self.__len__() == 0:
             return f"Вакансии не найдены"
         else:
