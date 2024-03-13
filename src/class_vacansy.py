@@ -1,5 +1,4 @@
-import json
-from src.confing import DATA
+from src.json_work import Json_Work
 
 
 class Vacansy:
@@ -8,6 +7,8 @@ class Vacansy:
         """Инициализируем с атрибутами:
         salary - Зарплата,
         city - Город"""
+        read = Json_Work()
+        self.rd_vacansy = read.read_file()
         self.constr_vacansy = []  # Пустой лист для сортировки вакансий по 'городу' и 'желаемой зарплаты'
         self.count = 0  # Счетчик количества найденных вакансий
         self.salary = salary
@@ -15,15 +16,9 @@ class Vacansy:
         self.found_vacansy = []  # Наденные вакансии
         self.top_salary = 0  # Наибольшая зарплата
         self.message = 'Вакансии найдены'
-        self.rd_vacansy = None
-
-    def read_vacansy(self):
-        """Чтение файла с поиском вакансий"""
-        with open(DATA, encoding='utf-8') as f:
-            self.rd_vacansy = (json.load(f))
-            return self.rd_vacansy
 
     def vacansy(self):
+
         for vacansy_d in self.rd_vacansy:
             if vacansy_d["salary"] is not None and vacansy_d["salary"]["from"] is not None:
                 if vacansy_d['area']['name'] == self.city:
@@ -61,6 +56,3 @@ class Vacansy:
             if i['salary']['from'] > self.top_salary:
                 self.top_salary = i['salary']['from']
         return self.top_salary
-
-
-
